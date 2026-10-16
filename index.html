@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Soto & Juice Buk Winarti — "Semangkuk Hangat, Sepuas Hati."</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandGreen: {
+                            50: '#F4F7F2',
+                            100: '#E6EFE1',
+                            200: '#C7DAC0',
+                            600: '#5C8044',
+                            700: '#4D6B38', // Dark Olive from Logo Bowl & Text
+                            800: '#3B532B',
+                            900: '#2A3C1E'
+                        },
+                        brandYellow: {
+                            300: '#FCD34D',
+                            400: '#F8B400', // Yellow from Steam & Soto Text
+                            500: '#F5A623',
+                            600: '#D98B0F'
+                        },
+                        warmCanvas: {
+                            50: '#FFFDF9',
+                            100: '#FBF9F5', // Soft Cream Background
+                            200: '#F3EFE6',
+                            300: '#E6DFC3'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FBF9F5;
+            color: #2A3C1E;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass-header {
+            background: rgba(251, 249, 245, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-shadow {
+            box-shadow: 0 8px 24px -4px rgba(77, 107, 56, 0.15);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brandYellow-400 selection:text-brandGreen-900 pb-20 md:pb-0">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass-header border-b border-warmCanvas-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo Badge Matching SVG Vector -->
+                <a href="#beranda" class="flex items-center gap-3.5 group">
+                    <div
+                        class="w-12 h-12 rounded-2xl flex flex-col items-center justify-center text-white group-hover:scale-105 transition-transform">
+                        <!-- Bowl SVG Icon -->
+                        <img src="Transparan.png" alt="Logo">
+                    </div>
+                    <div>
+                        <span
+                            class="block font-heading text-xs font-bold text-brandYellow-500 tracking-widest uppercase">WARUNG</span>
+                        <span class="block font-heading text-lg font-extrabold text-brandGreen-700 leading-none">SOTO &
+                            JUICE</span>
+                        <span class="block font-heading text-sm font-bold text-brandGreen-800 tracking-tight">BUK
+                            WINARTI</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <div
+                    class="hidden md:flex items-center space-x-7 font-semibold text-xs uppercase tracking-wider text-brandGreen-800">
+                    <a href="#beranda" class="hover:text-brandYellow-600 transition-colors">Beranda</a>
+                    <a href="#filosofi" class="hover:text-brandYellow-600 transition-colors">Filosofi & Sejarah</a>
+                    <a href="#menu" class="hover:text-brandYellow-600 transition-colors">Daftar Menu</a>
+                    <a href="#lokasi" class="hover:text-brandYellow-600 transition-colors">Tempat & Lokasi</a>
+                    <a href="#kontak" class="hover:text-brandYellow-600 transition-colors">Kontak</a>
+                </div>
+
+                <!-- Action Button & Cart Trigger -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="toggleCartDrawer()"
+                        class="relative p-3 bg-warmCanvas-200 text-brandGreen-800 hover:bg-brandYellow-400 hover:text-brandGreen-900 rounded-xl transition-all flex items-center justify-center">
+                        <i class="fa-solid fa-basket-shopping text-lg"></i>
+                        <span id="cart-badge"
+                            class="absolute -top-1.5 -right-1.5 bg-brandYellow-500 text-brandGreen-900 font-bold text-[10px] rounded-full w-5 h-5 flex items-center justify-center border-2 border-white scale-0 transition-transform">0</span>
+                    </button>
+
+                    <!-- Mobile Toggle Button -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="md:hidden p-2 text-brandGreen-800 focus:outline-none">
+                        <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-warmCanvas-100 border-b border-warmCanvas-200 px-6 py-5 space-y-3 font-semibold text-xs tracking-wider uppercase text-brandGreen-800 shadow-xl">
+            <a href="#beranda" onclick="toggleMobileMenu()" class="block py-1 hover:text-brandYellow-600">Beranda</a>
+            <a href="#filosofi" onclick="toggleMobileMenu()" class="block py-1 hover:text-brandYellow-600">Filosofi &
+                Sejarah</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block py-1 hover:text-brandYellow-600">Daftar Menu &
+                Pesan</a>
+            <a href="#lokasi" onclick="toggleMobileMenu()" class="block py-1 hover:text-brandYellow-600">Tempat &
+                Lokasi</a>
+            <a href="#kontak" onclick="toggleMobileMenu()" class="block py-1 hover:text-brandYellow-600">Kontak Kami</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda"
+        class="relative pt-28 pb-16 md:pt-36 md:pb-28 bg-gradient-to-b from-warmCanvas-100 via-warmCanvas-50 to-warmCanvas-100 border-b border-warmCanvas-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+                    <h1
+                        class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brandGreen-900 leading-tight tracking-tight">
+                        Semangkuk Hangat, Sepuas Hati.
+                    </h1>
+
+                    <p
+                        class="text-sm sm:text-base text-brandGreen-800 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Selamat datang di <strong class="font-bold text-brandGreen-900">Warung Soto Ayam & Jus Buah Buk
+                            Winarti</strong>. Kami menyajikan kehangatan soto ayam ceker dengan rempah murni dan jus
+                        buah segar tanpa pemanis buatan.
+                    </p>
+
+                    <!-- Trust Badges -->
+                    <div
+                        class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2 text-xs font-bold text-brandGreen-800">
+                        <span
+                            class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-warmCanvas-200 shadow-2xs">
+                            <i class="fa-solid fa-circle-check text-brandYellow-500"></i> Ceker Ayam Segar
+                        </span>
+                        <span
+                            class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-warmCanvas-200 shadow-2xs">
+                            <i class="fa-solid fa-circle-check text-brandYellow-500"></i> 100% Buah Murni
+                        </span>
+                        <span
+                            class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-warmCanvas-200 shadow-2xs">
+                            <i class="fa-solid fa-circle-check text-brandYellow-500"></i> Berdiri selama 10 Tahun
+                        </span>
+                    </div>
+
+                    <!-- CTA Actions -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                        <a href="#menu"
+                            class="px-8 py-4 bg-brandGreen-700 hover:bg-brandGreen-800 text-white font-heading font-bold text-sm rounded-xl shadow-lg hover:shadow-brandGreen-700/20 transition-all flex items-center justify-center gap-3 tracking-wider uppercase">
+                            <span>Pesan Sekarang</span>
+                            <i class="fa-solid fa-arrow-right text-brandYellow-400"></i>
+                        </a>
+                        <a href="#lokasi"
+                            class="px-8 py-4 bg-white hover:bg-warmCanvas-200 text-brandGreen-800 border border-warmCanvas-200 font-heading font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-location-dot text-brandYellow-500"></i>
+                            <span>Tempat & Lokasi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Card Highlight -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div
+                        class="bg-white p-6 rounded-3xl border-2 border-brandGreen-200 shadow-xl max-w-sm w-full relative">
+                        <div
+                            class="absolute -top-3.5 left-6 bg-brandYellow-400 text-brandGreen-900 font-heading font-bold text-xs px-3.5 py-1 rounded-full shadow-sm uppercase tracking-widest">
+                            Menu Utama
+                        </div>
+                        <div class="rounded-2xl overflow-hidden mb-4 border border-warmCanvas-200">
+                            <img src="https://images.unsplash.com/photo-1572656631137-7935297eff55?auto=format&fit=crop&q=80&w=800"
+                                alt="Soto Ayam Kampung Buk Winarti" class="w-full h-48 object-cover">
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-brandGreen-900 mb-1">Soto Ayam Ceker</h3>
+                        <p class="text-xs text-brandGreen-800 leading-relaxed mb-4">Ceker Ayam Empuk, Kuah Kaldu Segar,
+                            Kerupuk Gurih Kriuk.</p>
+                        <div class="flex items-center justify-between border-t border-warmCanvas-500 pt-3">
+                            <div>
+                                <span class="block text-[10px] text-brandGreen-600 font-bold uppercase">Harga</span>
+                                <span class="text-xl font-extrabold text-brandGreen-700">Rp 13.000</span>
+                            </div>
+                            <button onclick="openCustomModal(1)"
+                                class="px-4 py-2 bg-brandGreen-700 hover:bg-brandGreen-800 text-white font-bold text-xs rounded-xl transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Filosofi & Sejarah -->
+    <section id="filosofi" class="py-16 sm:py-20 bg-warmCanvas-100 border-b border-warmCanvas-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header Section -->
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brandYellow-600 font-bold tracking-widest uppercase text-xs">Jejak Rasa &
+                    Dedikasi</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brandGreen-900 mt-1.5">Filosofi &
+                    Sejarah Warung</h2>
+                <div class="w-12 h-1 bg-brandYellow-400 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+
+                <!-- Left Column: Sejarah Usaha -->
+                <div
+                    class="lg:col-span-6 flex flex-col justify-between bg-white p-7 sm:p-9 rounded-2xl border border-warmCanvas-200 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="px-3 py-1 bg-brandGreen-100 text-brandGreen-800 font-heading font-extrabold text-xs sm:text-sm rounded-lg border border-brandGreen-200">
+                                Perjalanan Usaha
+                            </span>
+                        </div>
+
+                        <h3 class="font-heading font-bold text-xl sm:text-2xl text-brandGreen-900 leading-snug">
+                            Awal Perjalanan Buk Winarti
+                        </h3>
+
+                        <p class="text-xs sm:text-sm text-brandGreen-800/90 leading-relaxed pt-1">
+                            Perjalanan usaha Bu Winarti bermula dari jualan gorengan sederhana di sekitar kediamannya.
+                            Saat berhasil memperoleh sebuah kios, muncul ide untuk menyajikan soto ayam dan aneka jus
+                            buah. Soto ayam ceker dengan kuah kaldu khas racikannya pun menjadi menu unggulan,
+                            disandingkan dengan aneka jus segar favorit pelanggan. Meski berada di lokasi yang kurang
+                            mencolok, kedai Bu Winarti senantiasa ramai dipadati pembeli.
+                        </p>
+                    </div>
+
+                    <!-- Subtle Highlight Footer -->
+                    <div
+                        class="mt-8 pt-5 border-t border-warmCanvas-200 flex items-center justify-between text-xs text-brandGreen-700 font-medium">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-store text-brandYellow-500"></i> Kios Sederhana, Cita Rasa Otentik
+                        </span>
+                        <span class="font-bold text-brandGreen-900">Sejak Awal Berdiri</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Filosofi Logo -->
+                <div
+                    class="lg:col-span-6 bg-brandGreen-900 text-white p-7 sm:p-9 rounded-2xl border border-brandGreen-800 shadow-md flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="px-3 py-1 bg-brandYellow-400 text-brandGreen-950 font-bold text-[11px] uppercase tracking-wider rounded-lg">
+                                Filosofi Logo
+                            </span>
+                        </div>
+
+                        <h3 class="font-heading font-extrabold text-xl sm:text-2xl text-brandYellow-400 leading-snug">
+                            "Semangkuk Hangat, Sepuas Hati."
+                        </h3>
+
+                        <p class="text-xs sm:text-sm text-warmCanvas-100/90 leading-relaxed pt-1 font-normal">
+                            Visual mangkuk hijau bersimbolkan kehangatan, kesehatan, serta kesegaran bahan alami sajian,
+                            di atasnya membumbung tiga garis asap kuning yang melambangkan kelezatan cita rasa kuah
+                            rempah soto hangat yang dihidangkan dengan penuh keikhlasan hati, sementara wujud siluet
+                            ayam di dalam mangkuk menguatkan identitas utama soto ayam berbahan segar yang siap
+                            memberikan kepuasan tulus bagi setiap pengunjung.
+                        </p>
+                    </div>
+
+                    <!-- Author/Founder Signature Footer -->
+                    <div class="mt-8 pt-5 border-t border-brandGreen-800 flex items-center gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-brandYellow-400 text-brandGreen-950 font-bold flex items-center justify-center font-heading text-sm shadow-xs shrink-0">
+                            BW
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs sm:text-sm text-white">Buk Winarti</h4>
+                            <p class="text-[11px] text-warmCanvas-200">Pendiri & Pemilik Warung</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Daftar Menu & Pesanan -->
+    <section id="menu" class="py-20 bg-warmCanvas-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="text-brandYellow-600 font-bold tracking-widest uppercase text-xs">Pilihan
+                        Hidangan</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brandGreen-900 mt-1">Daftar Menu
+                    </h2>
+                </div>
+
+                <!-- Controls: Search & Category Tabs -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <!-- Search Input -->
+                    <div class="relative min-w-[220px]">
+                        <input type="text" id="menu-search" oninput="handleSearch()" placeholder="Cari soto atau jus..."
+                            class="w-full pl-10 pr-4 py-2.5 text-xs bg-white border border-warmCanvas-200 rounded-xl focus:ring-2 focus:ring-brandGreen-700 focus:outline-none text-brandGreen-900">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-brandGreen-600 text-xs"></i>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div
+                        class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 hide-scrollbar bg-warmCanvas-200 p-1 rounded-xl border border-warmCanvas-300">
+                        <button onclick="filterCategory('all')" id="cat-all"
+                            class="cat-btn px-4 py-2 rounded-lg text-xs font-bold bg-brandGreen-700 text-white shadow-sm transition-all whitespace-nowrap">Semua</button>
+                        <button onclick="filterCategory('soto')" id="cat-soto"
+                            class="cat-btn px-4 py-2 rounded-lg text-xs font-semibold text-brandGreen-800 hover:bg-warmCanvas-300 transition-all whitespace-nowrap">Soto
+                            Ayam</button>
+                        <button onclick="filterCategory('jus')" id="cat-jus"
+                            class="cat-btn px-4 py-2 rounded-lg text-xs font-semibold text-brandGreen-800 hover:bg-warmCanvas-300 transition-all whitespace-nowrap">Aneka
+                            Jus</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Grid Container -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Lokasi & Map -->
+    <section id="lokasi" class="py-20 bg-warmCanvas-100 border-t border-warmCanvas-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brandYellow-600 font-bold tracking-widest uppercase text-xs">Singgah Ke Tempat
+                    Kami</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brandGreen-900 mt-1">Lokasi Warung &
+                    Jam Buka</h2>
+                <div class="w-16 h-1 bg-brandYellow-400 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Map Container -->
+                <div
+                    class="lg:col-span-7 bg-white p-3 rounded-3xl border border-warmCanvas-200 shadow-md min-h-[400px]">
+                    <iframe title="Google Maps Soto Buk Winarti"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.249628354179!2d106.87782217468305!3d-6.230785943757359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f30048b28725%3A0xea98dc5ae69986f4!2sWarung%20Soto%20Ayam%20%26%20Jus%20Buah%20Bu%20Winarti!5e0!3m2!1sid!2sid!4v1791939766528!5m2!1sid!2sid"
+                        class="w-full h-full min-h-[380px] rounded-2xl border-0" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+
+                <!-- Info Sidebar Card -->
+                <div
+                    class="lg:col-span-5 bg-brandGreen-800 text-white p-8 rounded-3xl space-y-6 shadow-xl border border-brandGreen-700">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-brandYellow-400 text-brandGreen-900 flex items-center justify-center shrink-0 font-bold text-lg">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-white text-base">Alamat Lengkap</h3>
+                            <p class="text-xs text-warmCanvas-200 mt-1 leading-relaxed">
+                                RT.2/RW.5, Cipinang Besar Sel., Kecamatan Jatinegara, Kota Jakarta Timur, Daerah Khusus
+                                Ibukota Jakarta 13410
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 border-t border-brandGreen-700 pt-5">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-brandGreen-700 text-brandYellow-400 flex items-center justify-center shrink-0 font-bold text-lg border border-brandGreen-600">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-white text-base">Jam Operasional</h3>
+                            <p class="text-xs text-warmCanvas-200 mt-1">
+                                Buka Senin - Jumat:
+                                <span class="font-bold text-brandYellow-400">09.00 – 17.00 WIB</span>
+                            </p>
+                            <span id="status-toko"
+                                class="inline-block mt-2 px-2.5 py-0.5 text-[10px] font-bold rounded border transition-colors duration-200">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 border-t border-brandGreen-700 pt-5">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-brandGreen-700 text-brandYellow-400 flex items-center justify-center shrink-0 font-bold text-lg border border-brandGreen-600">
+                            <i class="fa-solid fa-square-parking"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-white text-base">Fasilitas Warung</h3>
+                            <p class="text-xs text-warmCanvas-200 mt-1 leading-relaxed">
+                                Area Parkir Luas, Meja Makan Bersih & Nyaman, dan Toilet.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+                        class="w-full mt-2 py-3 bg-brandYellow-400 hover:bg-brandYellow-500 text-brandGreen-900 font-heading font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-diamond-turn-right"></i> Buka Rute Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-brandGreen-900 text-warmCanvas-200 pt-16 pb-12 border-t-4 border-brandYellow-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-10 pb-12 border-b border-brandGreen-800">
+
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-brandGreen-700 border border-brandYellow-400 flex items-center justify-center text-brandYellow-400 font-bold">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <div>
+                            <span class="block font-heading font-extrabold text-white text-base leading-none">WARUNG
+                                SOTO & JUICE</span>
+                            <span class="block font-heading font-bold text-brandYellow-400 text-xs">BUK WINARTI</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-warmCanvas-300 leading-relaxed">
+                        "Semangkuk Hangat, Sepuas Hati."
+                    </p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider mb-4">Navigasi Warung
+                    </h4>
+                    <ul class="space-y-2 text-xs text-warmCanvas-300">
+                        <li><a href="#beranda" class="hover:text-brandYellow-400 transition-colors">Beranda Utama</a>
+                        </li>
+                        <li><a href="#filosofi" class="hover:text-brandYellow-400 transition-colors">Filosofi &
+                                Sejarah</a></li>
+                        <li><a href="#menu" class="hover:text-brandYellow-400 transition-colors">Daftar Menu & Pesan</a>
+                        </li>
+                        <li><a href="#lokasi" class="hover:text-brandYellow-400 transition-colors">Tempat & Lokasi</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Direct Contacts -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider mb-4">Kontak Pemesanan
+                    </h4>
+                    <ul class="space-y-3 text-xs text-warmCanvas-300">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-brandYellow-400 text-base"></i>
+                            <span>WhatsApp: +62 857-9249-7952</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brandYellow-400 text-sm"></i>
+                            <span>Telepon: +62 857-9249-7952</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div
+                class="pt-8 text-center text-xs text-warmCanvas-300/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 Warung Soto & Juice Buk Winarti. Hak Cipta Dilindungi.</p>
+                <p>Otentik, Higenis & Tanpa Pemanis Buatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Customization Modal -->
+    <div id="custom-modal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+        <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-warmCanvas-200 transform scale-95 transition-transform duration-200"
+            id="custom-modal-card">
+
+            <div class="relative h-48 bg-warmCanvas-200">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeCustomModal()"
+                    class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div>
+                    <h3 id="modal-title" class="font-heading font-bold text-xl text-brandGreen-900"></h3>
+                    <p id="modal-price" class="text-brandGreen-700 font-extrabold text-base mt-0.5"></p>
+                </div>
+
+                <!-- Custom Options Form -->
+                <div id="modal-options-container" class="space-y-3 text-xs"></div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-brandGreen-800 mb-1">Catatan Khusus
+                        (Opsional)</label>
+                    <input type="text" id="modal-item-note" placeholder="Contoh: Kuah dipisah / Jangan pakai gula..."
+                        class="w-full px-3 py-2 text-xs border border-warmCanvas-300 rounded-xl focus:ring-2 focus:ring-brandGreen-700 focus:outline-none">
+                </div>
+
+                <div class="pt-2 flex items-center justify-between border-t border-warmCanvas-200">
+                    <div class="flex items-center gap-3 bg-warmCanvas-200 p-1 rounded-xl">
+                        <button onclick="adjustModalQty(-1)"
+                            class="w-7 h-7 bg-white rounded-lg font-bold text-brandGreen-900 hover:bg-warmCanvas-300">-</button>
+                        <span id="modal-qty" class="font-bold text-xs px-1">1</span>
+                        <button onclick="adjustModalQty(1)"
+                            class="w-7 h-7 bg-white rounded-lg font-bold text-brandGreen-900 hover:bg-warmCanvas-300">+</button>
+                    </div>
+
+                    <button onclick="confirmAddToCart()"
+                        class="px-6 py-3 bg-brandGreen-700 hover:bg-brandGreen-800 text-white font-heading font-bold text-xs rounded-xl shadow-md uppercase tracking-wider">
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mobile Floating Bottom Cart Bar -->
+    <div id="mobile-cart-bar"
+        class="fixed bottom-4 left-4 right-4 bg-brandGreen-900 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between z-30 sm:hidden transform translate-y-24 transition-transform duration-300 border border-brandYellow-400/40">
+        <div class="flex items-center gap-3">
+            <div class="relative">
+                <i class="fa-solid fa-basket-shopping text-xl text-brandYellow-400"></i>
+                <span id="mobile-cart-badge"
+                    class="absolute -top-2 -right-2 bg-brandYellow-400 text-brandGreen-900 text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </div>
+            <div>
+                <span class="block text-[10px] text-warmCanvas-300">Total Pesanan:</span>
+                <span id="mobile-cart-total" class="font-bold text-sm text-brandYellow-400">Rp 0</span>
+            </div>
+        </div>
+
+        <button onclick="toggleCartDrawer()"
+            class="px-4 py-2 bg-brandYellow-400 hover:bg-brandYellow-500 text-brandGreen-900 font-heading font-bold text-xs rounded-xl">
+            Lihat Keranjang
+        </button>
+    </div>
+
+    <!-- Slide-out Shopping Cart Drawer -->
+    <div id="cart-drawer-overlay" onclick="toggleCartDrawer()"
+        class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    </div>
+
+    <div id="cart-drawer"
+        class="fixed top-0 right-0 h-full w-full max-w-md bg-warmCanvas-50 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-6 bg-brandGreen-900 text-white flex items-center justify-between border-b border-brandGreen-800">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-basket-shopping text-lg text-brandYellow-400"></i>
+                <h3 class="font-heading font-bold text-lg">Keranjang Pesanan</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="p-2 text-warmCanvas-300 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Content Body -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <div>
+                <h4 class="font-heading font-bold text-brandGreen-900 text-sm mb-3 border-b border-warmCanvas-200 pb-2">
+                    Item Dipilih</h4>
+                <div id="cart-items-container" class="space-y-3"></div>
+            </div>
+
+            <!-- Form Pemesan -->
+            <div id="customer-form-section" class="border-t border-warmCanvas-200 pt-4 space-y-3 text-xs">
+                <h4 class="font-heading font-bold text-brandGreen-900 text-sm">Informasi Pemesan</h4>
+
+                <div>
+                    <label class="block font-semibold text-brandGreen-800 mb-1">Nama Pemesan *</label>
+                    <input type="text" id="cust-name" placeholder="Contoh: Pak Rahmad"
+                        class="w-full px-3 py-2 border border-warmCanvas-300 rounded-xl focus:ring-2 focus:ring-brandGreen-700 focus:outline-none bg-white">
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-brandGreen-800 mb-1">Catatan Alamat</label>
+                    <textarea id="cust-notes" rows="2" placeholder="Contoh: Meja No. 4 / Depan Lapangan..."
+                        class="w-full px-3 py-2 border border-warmCanvas-300 rounded-xl focus:ring-2 focus:ring-brandGreen-700 focus:outline-none bg-white"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer Summary -->
+        <div class="p-6 bg-warmCanvas-200 border-t border-warmCanvas-300 space-y-4">
+            <div class="flex items-center justify-between text-base font-extrabold text-brandGreen-900">
+                <span>Total Estimasi:</span>
+                <span id="cart-total-price" class="text-xl text-brandGreen-700">Rp 0</span>
+            </div>
+
+            <button onclick="sendWhatsAppOrder()"
+                class="w-full py-3.5 bg-brandGreen-700 hover:bg-brandGreen-800 text-white font-heading font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider">
+                <i class="fa-brands fa-whatsapp text-lg text-brandYellow-400"></i>
+                <span>Pesan Sekarang via WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-brandGreen-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none border border-brandYellow-400/40">
+        <i class="fa-solid fa-circle-check text-brandYellow-400 text-lg"></i>
+        <span id="toast-msg" class="text-xs font-semibold">Item ditambahkan!</span>
+    </div>
+
+    <script>
+        // Menu Dataset
+        const menuData = [
+            {
+                id: 1,
+                name: 'Soto Ayam Ceker',
+                category: 'soto',
+                price: 13000,
+                desc: 'Ceker Ayam Empuk, Kuah Kaldu Segar, Kerupuk Gurih Kriuk.',
+                badge: 'Favorit',
+                image: 'soto.png',
+                customOptions: [
+                    { name: 'Pilihan Sambal', choices: ['Sambal Terpisah', 'Langsung Pedas', 'Tanpa Sambal'] }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Soto Ayam Ceker + Nasi',
+                category: 'soto',
+                price: 17000,
+                desc: 'Ceker Ayam Empuk, Kuah Kaldu Segar, Kerupuk Gurih Kriuk dan Nasi Pulen.',
+                badge: '',
+                image: 'soto dan nasi.png',
+                customOptions: [
+                    { name: 'Pilihan Sambal', choices: ['Sambal Terpisah', 'Langsung Pedas', 'Tanpa Sambal'] }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Jus Belimbing',
+                category: 'jus',
+                price: 7000,
+                desc: 'Belimbing Segar Pilihan, Kaya Vitamin C, Menyegarkan Dahaga.',
+                badge: 'Populer',
+                image: 'belimbing.png',
+                customOptions: [
+                    { name: 'Tingkat Es', choices: ['Es Normal', 'Sedikit Es', 'Tanpa Es'] },
+                    { name: 'Tingkat Manis', choices: ['Manis Normal', 'Sedikit Gula'] }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Jus Jeruk',
+                category: 'jus',
+                price: 7000,
+                desc: 'Jeruk Segar Peras Murni, Kaya Vitamin C, Menyegarkan Dahaga.',
+                badge: 'Segar Murni',
+                image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=600',
+                customOptions: [
+                    { name: 'Tingkat Es', choices: ['Es Normal', 'Sedikit Es', 'Tanpa Es'] },
+                    { name: 'Tingkat Manis', choices: ['Manis Normal', 'Sedikit Gula'] }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Jus Jambu',
+                category: 'jus',
+                price: 8000,
+                desc: 'Jambu segar pilihan, kaya vitamin C, menyegarkan dahaga.',
+                badge: 'Favorit',
+                image: 'jambu.png',
+                customOptions: [
+                    { name: 'Tingkat Es', choices: ['Es Normal', 'Sedikit Es', 'Tanpa Es'] },
+                    { name: 'Tingkat Manis', choices: ['Manis Normal', 'Sedikit Gula'] }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Jus Alpukat',
+                category: 'jus',
+                price: 10000,
+                desc: 'Alpukat segar pilihan, kaya vitamin E, menyegarkan dahaga.',
+                badge: '',
+                image: 'alpukat.png',
+                customOptions: [
+                    { name: 'Tingkat Es', choices: ['Es Normal', 'Sedikit Es', 'Tanpa Es'] },
+                    { name: 'Tingkat Manis', choices: ['Manis Normal', 'Sedikit Gula'] }
+                ]
+            },
+            {
+                id: 7,
+                name: 'Jus Mangga',
+                category: 'jus',
+                price: 10000,
+                desc: 'Mangga segar pilihan, kaya vitamin A dan C, menyegarkan dahaga.',
+                badge: '',
+                image: 'mangga.png',
+                customOptions: [
+                    { name: 'Tingkat Es', choices: ['Es Normal', 'Sedikit Es', 'Tanpa Es'] },
+                    { name: 'Tingkat Manis', choices: ['Manis Normal', 'Sedikit Gula'] }
+                ]
+            }
+        ];
+
+        // Global State
+        let cart = [];
+        let currentActiveItem = null;
+        let currentModalQty = 1;
+        let activeCategory = 'all';
+
+        function formatRupiah(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function updateStatusOperasional() {
+            const badge = document.getElementById('status-toko');
+            if (!badge) return;
+
+            const now = new Date();
+
+            const options = { timeZone: 'Asia/Jakarta', hour12: false };
+            const dayFormatter = new Intl.DateTimeFormat('en-US', { ...options, weekday: 'short' });
+            const hourFormatter = new Intl.DateTimeFormat('en-US', { ...options, hour: '2-digit', minute: '2-digit' });
+
+            const day = dayFormatter.format(now);
+
+            const parts = hourFormatter.formatToParts(now);
+            const hour = parseInt(parts.find(p => p.type === 'hour').value, 10);
+            const minute = parseInt(parts.find(p => p.type === 'minute').value, 10);
+            const timeInHours = hour + (minute / 60);
+
+            const isWeekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(day);
+
+            const isOpenHours = timeInHours >= 9 && timeInHours < 17;
+
+            if (isWeekday && isOpenHours) {
+                badge.textContent = '● Buka Hari Ini';
+                badge.className = 'inline-block mt-2 px-2.5 py-0.5 bg-brandYellow-400/20 text-brandYellow-400 border border-brandYellow-400/30 text-[10px] font-bold rounded';
+            } else {
+                badge.textContent = '● Tutup';
+                badge.className = 'inline-block mt-2 px-2.5 py-0.5 bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold rounded';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateStatusOperasional);
+
+        setInterval(updateStatusOperasional, 60000);
+
+        // Render Menu Cards
+        function renderMenu(category = 'all', searchQuery = '') {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+
+            let filtered = category === 'all'
+                ? menuData
+                : menuData.filter(i => i.category === category);
+
+            if (searchQuery.trim() !== '') {
+                filtered = filtered.filter(i =>
+                    i.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    i.desc.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-brandGreen-800">
+                        <i class="fa-solid fa-utensils text-4xl mb-3 text-warmCanvas-300"></i>
+                        <p class="font-heading font-bold text-lg">Menu tidak ditemukan</p>
+                        <p class="text-xs">Coba gunakan kata kunci pencarian lain.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const badgeHTML = item.badge
+                    ? `<span class="absolute top-3 right-3 bg-brandYellow-400 text-brandGreen-900 font-heading font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">${item.badge}</span>`
+                    : '';
+
+                const cardHTML = `
+                    <div class="bg-white rounded-2xl border border-warmCanvas-200 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="relative overflow-hidden h-48 bg-warmCanvas-200">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                ${badgeHTML}
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-heading font-bold text-brandGreen-900 text-base mb-1">${item.name}</h3>
+                                <p class="text-brandGreen-800 text-xs leading-relaxed line-clamp-2">${item.desc}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-0 flex items-center justify-between border-t border-warmCanvas-200 pt-3 mt-2">
+                            <span class="text-base font-extrabold text-brandGreen-700">${formatRupiah(item.price)}</span>
+                            <button onclick="openCustomModal(${item.id})" class="px-3.5 py-2 bg-brandGreen-700 hover:bg-brandGreen-800 text-white font-heading font-bold text-xs rounded-xl transition-colors flex items-center gap-1.5 uppercase tracking-wider">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // Category Filter Tabs
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-brandGreen-700', 'text-white', 'shadow-sm');
+                btn.classList.add('text-brandGreen-800');
+            });
+
+            const activeBtn = document.getElementById(`cat-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-brandGreen-800');
+                activeBtn.classList.add('bg-brandGreen-700', 'text-white', 'shadow-sm');
+            }
+
+            const searchVal = document.getElementById('menu-search').value;
+            renderMenu(cat, searchVal);
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('menu-search').value;
+            renderMenu(activeCategory, query);
+        }
+
+        // Customization Modal Logic
+        function openCustomModal(id) {
+            const item = menuData.find(m => m.id === id);
+            if (!item) return;
+
+            currentActiveItem = item;
+            currentModalQty = 1;
+
+            document.getElementById('modal-title').textContent = item.name;
+            document.getElementById('modal-price').textContent = formatRupiah(item.price);
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-qty').textContent = currentModalQty;
+            document.getElementById('modal-item-note').value = '';
+
+            const optionsContainer = document.getElementById('modal-options-container');
+            optionsContainer.innerHTML = '';
+
+            if (item.customOptions && item.customOptions.length > 0) {
+                item.customOptions.forEach((opt, idx) => {
+                    let choicesHTML = '';
+                    opt.choices.forEach((choice, cIdx) => {
+                        choicesHTML += `
+                            <label class="flex items-center gap-2 text-brandGreen-900 cursor-pointer">
+                                <input type="radio" name="opt-${idx}" value="${choice}" ${cIdx === 0 ? 'checked' : ''} class="text-brandGreen-700 focus:ring-brandGreen-700">
+                                <span>${choice}</span>
+                            </label>
+                        `;
+                    });
+
+                    optionsContainer.innerHTML += `
+                        <div>
+                            <span class="block font-semibold text-brandGreen-800 mb-1">${opt.name}</span>
+                            <div class="flex flex-wrap gap-3 bg-warmCanvas-100 p-2.5 rounded-xl border border-warmCanvas-200">
+                                ${choicesHTML}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            const modal = document.getElementById('custom-modal');
+            const card = document.getElementById('custom-modal-card');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('custom-modal');
+            const card = document.getElementById('custom-modal-card');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.add('scale-95');
+        }
+
+        function adjustModalQty(delta) {
+            currentModalQty += delta;
+            if (currentModalQty < 1) currentModalQty = 1;
+            document.getElementById('modal-qty').textContent = currentModalQty;
+        }
+
+        function confirmAddToCart() {
+            if (!currentActiveItem) return;
+
+            const selectedOpts = [];
+            if (currentActiveItem.customOptions) {
+                currentActiveItem.customOptions.forEach((opt, idx) => {
+                    const checked = document.querySelector(`input[name="opt-${idx}"]:checked`);
+                    if (checked) {
+                        selectedOpts.push(checked.value);
+                    }
+                });
+            }
+
+            const userNote = document.getElementById('modal-item-note').value.trim();
+
+            cart.push({
+                cartId: Date.now(),
+                id: currentActiveItem.id,
+                name: currentActiveItem.name,
+                price: currentActiveItem.price,
+                qty: currentModalQty,
+                options: selectedOpts,
+                note: userNote
+            });
+
+            closeCustomModal();
+            updateCartUI();
+            showToast('Item berhasil ditambahkan!');
+        }
+
+        // Cart Drawer Operations
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalDisplay = document.getElementById('cart-total-price');
+            const badge = document.getElementById('cart-badge');
+            const mobileBadge = document.getElementById('mobile-cart-badge');
+            const mobileTotal = document.getElementById('mobile-cart-total');
+            const mobileBar = document.getElementById('mobile-cart-bar');
+
+            let totalCost = 0;
+            let totalQty = 0;
+            let itemsHTML = '';
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                totalCost += subtotal;
+                totalQty += item.qty;
+
+                const optionsStr = item.options.length > 0 ? item.options.join(' • ') : '';
+                const noteStr = item.note ? `Catatan: "${item.note}"` : '';
+
+                itemsHTML += `
+                    <div class="bg-white p-3 rounded-xl border border-warmCanvas-200 shadow-2xs space-y-2">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <h5 class="font-heading font-bold text-brandGreen-900 text-xs">${item.name}</h5>
+                                <span class="text-xs text-brandGreen-700 font-bold">${formatRupiah(item.price)}</span>
+                            </div>
+                            <button onclick="removeCartItem(${item.cartId})" class="text-xs text-red-500 hover:text-red-700 p-1">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+
+                        ${optionsStr ? `<p class="text-[10px] text-brandGreen-700 font-medium bg-warmCanvas-100 px-2 py-0.5 rounded">${optionsStr}</p>` : ''}
+                        ${noteStr ? `<p class="text-[10px] text-brandGreen-600 italic">${noteStr}</p>` : ''}
+
+                        <div class="flex items-center justify-between pt-1 border-t border-warmCanvas-200">
+                            <span class="text-[11px] font-bold text-brandGreen-900">Subtotal: ${formatRupiah(subtotal)}</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeQty(${item.cartId}, -1)" class="w-6 h-6 rounded bg-warmCanvas-200 font-bold text-xs">-</button>
+                                <span class="text-xs font-bold">${item.qty}</span>
+                                <button onclick="changeQty(${item.cartId}, 1)" class="w-6 h-6 rounded bg-warmCanvas-200 font-bold text-xs">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-brandGreen-800">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-2 text-warmCanvas-300"></i>
+                        <p class="text-xs font-semibold">Keranjang Anda masih kosong.</p>
+                    </div>
+                `;
+                badge.classList.add('scale-0');
+                mobileBar.classList.add('translate-y-24');
+            } else {
+                container.innerHTML = itemsHTML;
+                badge.textContent = totalQty;
+                badge.classList.remove('scale-0');
+
+                mobileBadge.textContent = totalQty;
+                mobileTotal.textContent = formatRupiah(totalCost);
+                mobileBar.classList.remove('translate-y-24');
+            }
+
+            totalDisplay.textContent = formatRupiah(totalCost);
+        }
+
+        function changeQty(cartId, delta) {
+            const item = cart.find(c => c.cartId === cartId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(c => c.cartId !== cartId);
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(cartId) {
+            cart = cart.filter(c => c.cartId !== cartId);
+            updateCartUI();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-drawer-overlay');
+
+            const isOpen = !drawer.classList.contains('translate-x-full');
+            if (isOpen) {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-2xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-2xl';
+            }
+        }
+
+        // Pre-formatted WhatsApp Direct Order
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                showToast('Keranjang masih kosong!');
+                return;
+            }
+
+            const custName = document.getElementById('cust-name').value.trim();
+            const custNotes = document.getElementById('cust-notes').value.trim();
+
+            if (!custName) {
+                alert('Mohon isi Nama Pemesan terlebih dahulu.');
+                return;
+            }
+
+            let total = 0;
+            let msg = `Halo Buk Win ini *Warung Soto Ayam & Jus buah Buk Winarti* kan?,\nSaya mau pesan hidangan berikut:\n\n`;
+            msg += `*Nama Pemesan:* ${custName}\n`;
+            if (custNotes) {
+                msg += `*Catatan Alamat:* ${custNotes}\n`;
+            }
+            msg += `\n--- *RINCIAN PESANAN* ---\n`;
+
+            cart.forEach((item, i) => {
+                const sub = item.price * item.qty;
+                total += sub;
+                msg += `${i + 1}. *${item.name}* (${item.qty}x) = ${formatRupiah(sub)}\n`;
+                if (item.options && item.options.length > 0) {
+                    msg += `   └ Opsi: ${item.options.join(', ')}\n`;
+                }
+                if (item.note) {
+                    msg += `   └ Catatan: ${item.note}\n`;
+                }
+            });
+
+            msg += `\n💰 *Total Estimasi:* ${formatRupiah(total)}\n\n`;
+            msg += `_Semangkuk Hangat, Sepuas Hati._ Mohon diproses ya Buk Winarti. Terima kasih!`;
+
+            const phone = '6285865749364';
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        window.onload = function () {
+            renderMenu('all');
+        };
+    </script>
+</body>
+
+</html>
